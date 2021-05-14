@@ -25,3 +25,6 @@ rosbag play camera_lidar.bag
     rosbag play camera_lidar.bag
     roslaunch cam_lidar_calibration  project_img.launch 
 ```
+## 数据集
+链接：https://pan.baidu.com/s/1hmxkY0scBc-qEC4A208PbA 
+提取码：fj19 
