@@ -1,0 +1,70 @@
+<!-- -*- mode: XML -*- -->
+<!-- run velodyne_pointcloud/CloudNodelet in a nodelet manager -->
+
+<launch>
+  <arg name="model" default="32C" />
+  <arg name="calibration" default="$(find velodyne_pointcloud)/params/VeloView-VLP-32C.yaml"/>
+  <arg name="manager" default="velodyne_nodelet_manager" />
+  <arg name="fixed_frame" default="velodyne" />
+  <arg name="target_frame" default="velodyne" />
+  <arg name="max_range" default="200.0" />
+  <arg name="min_range" default="0.4" />
+  <arg name="organize_cloud" default="false" />
+  <arg name="packet_topic" default="velodyne_packets" />
+
+  <node pkg="nodelet" type="nodelet" name="$(arg manager)_cloud1"
+        args="load velodyne_pointcloud/CloudNodelet $(arg manager)">
+    <param name="model" value="$(arg model)"/>
+    <param name="calibration" value="$(arg calibration)"/>
+    <param name="fixed_frame" value="left_front"/>
+    <param name="target_frame" value="left_front"/>
+    <param name="max_range" value="$(arg max_range)"/>
+    <param name="min_range" value="$(arg min_range)"/>
+    <param name="organize_cloud" value="$(arg organize_cloud)"/>
+    <!-- <param name="packet_topic" value="/apollo/sensor/velodyne32/VelodyneScan_left_front"/> -->
+    <param name="packet_topic" value="left_front"/>
+    <param name="cloud_topic" value="velodyne/left_front"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="$(arg manager)_cloud2"
+        args="load velodyne_pointcloud/CloudNodelet $(arg manager)">
+    <param name="model" value="$(arg model)"/>
+    <param name="calibration" value="$(arg calibration)"/>
+    <param name="fixed_frame" value="left_rear"/>
+    <param name="target_frame" value="left_rear"/>
+    <param name="max_range" value="$(arg max_range)"/>
+    <param name="min_range" value="$(arg min_range)"/>
+    <param name="organize_cloud" value="$(arg organize_cloud)"/>
+    <!-- <param name="packet_topic" value="/apollo/sensor/velodyne32/VelodyneScan_left_rear"/> -->
+    <param name="packet_topic" value="left_rear"/>
+    <param name="cloud_topic" value="velodyne/left_rear"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="$(arg manager)_cloud3"
+        args="load velodyne_pointcloud/CloudNodelet $(arg manager)">
+    <param name="model" value="$(arg model)"/>
+    <param name="calibration" value="$(arg calibration)"/>
+    <param name="fixed_frame" value="right_front"/>
+    <param name="target_frame" value="right_front"/>
+    <param name="max_range" value="$(arg max_range)"/>
+    <param name="min_range" value="$(arg min_range)"/>
+    <param name="organize_cloud" value="$(arg organize_cloud)"/>
+    <!-- <param name="packet_topic" value="/apollo/sensor/velodyne32/VelodyneScan_right_front"/> -->
+    <param name="packet_topic" value="right_front"/>
+    <param name="cloud_topic" value="velodyne/right_front"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="$(arg manager)_cloud4"
+        args="load velodyne_pointcloud/CloudNodelet $(arg manager)">
+    <param name="model" value="$(arg model)"/>
+    <param name="calibration" value="$(arg calibration)"/>
+    <param name="fixed_frame" value="right_rear"/>
+    <param name="target_frame" value="right_rear"/>
+    <param name="max_range" value="$(arg max_range)"/>
+    <param name="min_range" value="$(arg min_range)"/>
+    <param name="organize_cloud" value="$(arg organize_cloud)"/>
+    <!-- <param name="packet_topic" value="/apollo/sensor/velodyne32/VelodyneScan_right_rear"/> -->
+    <param name="packet_topic" value="right_rear"/>
+    <param name="cloud_topic" value="velodyne/right_rear"/>
+  </node>
+</launch>

@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="tf" type="static_transform_publisher" name="lf_to_rf" args="-1.65719   -0.115533 -0.00113389 0.0656555  -3.13222   3.13236 /left_front /right_front 10" />
+
+  <node pkg="tf" type="static_transform_publisher" name="lf_to_lr" args="-0.0755661    4.21108  -0.601357  2.98707 -3.11953 -3.12804 /left_front /left_rear 10" />
+
+  <node pkg="tf" type="static_transform_publisher" name="rf_to_rr" args="-0.216719  -4.35297  -0.76857   0.174587 0.00372654  0.0164336 /right_front /right_rear 10" />
+
+
+</launch>
